@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parameter;
+use App\Models\RegisterCode;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -44,6 +46,18 @@ class AuthController extends Controller
                 'password' => "required",
                 'confirm_password' => "required|same:password"
             ]);
+
+            /**
+             * If it is a private server, 
+             * registration must be via code referenced by the administrator or another player
+             */
+            if(Parameter::getValueFromKey('is_private_ddt')){
+                $validator->after(function($validator) use ($request){
+                    $code = $request->input('code');
+                    if(!RegisterCode::canUse($code))
+                        $validator->errors()->add('code', trans('validation.register_code'));
+                });
+            }
 
             if ($validator->fails())
                 return $this->sendError('Validation error', $validator->errors());
