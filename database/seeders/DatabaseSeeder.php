@@ -12,6 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        /** Create default roles */
+        $this->call(LaratrustSetupSeeder::class);
+
+        /** Create default super-admin users */
+        $this->call(UserSeeder::class);
+
         /** Create default application params */
         $this->call(ParameterSeeder::class);
 
