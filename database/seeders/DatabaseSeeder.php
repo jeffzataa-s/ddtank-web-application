@@ -12,7 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /** Create default params for application */
+        /** Create default application params */
         $this->call(ParameterSeeder::class);
+
+        /** Create default game database */
+        $this->call(ServerSeeder::class);
     }
 }
