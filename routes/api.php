@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameUserController;
 use App\Http\Controllers\ServerController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +21,14 @@ Route::post('register', [AuthController::class, 'signup'])->name('api.register')
 
 Route::middleware('auth:sanctum')->group(function(){
 
-    /** Servidores */
+    Route::middleware('gunny.databases')->group(function(){
+        Route::prefix('character')->group(function(){
+            Route::get('/', [GameUserController::class, 'index'])->name('api.character.index');
+        });
+    });
+
     Route::prefix('server')->group(function(){
         Route::get('/', [ServerController::class, 'index'])->name('api.server.index');
     });
+    
 });
