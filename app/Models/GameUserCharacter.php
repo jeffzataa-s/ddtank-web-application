@@ -27,7 +27,7 @@ class GameUserCharacter extends Model
                 $connectionKey = $server->database->base_user . "_" . $serverId;
                 $connections = Config::get('database.connections');
                 if (array_key_exists($connectionKey, $connections)) {
-                    $this->setConnection("Db_XiaoJian_Player_1");
+                    $this->setConnection($connectionKey);
                     return $this->newQuery();
                 }
                 return $connectionKey;
