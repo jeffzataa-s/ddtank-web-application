@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,5 +22,8 @@ class DatabaseSeeder extends Seeder
 
         /** Create default game database */
         $this->call(ServerSeeder::class);
+
+        /** Create default game application params */
+        $this->call(ServerApplicationSeeder::class);
     }
 }

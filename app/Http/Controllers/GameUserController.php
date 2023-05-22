@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GameUserCharacter;
+use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;

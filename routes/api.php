@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameUserController;
 use App\Http\Controllers\ServerController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/', [ServerController::class, 'index'])->name('api.server.index');
     });
     
+    Route::prefix('game')->group(function(){
+        Route::get('/loading_auth', [GameController::class, 'loadingAuth'])->name('api.server.loading_auth');
+    });
 });
