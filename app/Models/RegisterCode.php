@@ -13,7 +13,8 @@ class RegisterCode extends Model
 
     protected $fillable = [
         'user_id',
-        'code'
+        'code',
+        'expire_at'
     ];
 
     public function scopecanUse(Builder $query, $code): bool

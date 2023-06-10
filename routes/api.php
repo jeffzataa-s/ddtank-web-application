@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\GameUserController;
+use App\Http\Controllers\RegisterCodeController;
 use App\Http\Controllers\ServerController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,12 @@ Route::middleware('auth:sanctum')->group(function(){
     
     Route::prefix('game')->group(function(){
         Route::get('/loading_auth', [GameController::class, 'loadingAuth'])->name('api.server.loading_auth');
+    });
+
+    Route::prefix('register_code')->group(function(){
+        Route::get('/', [RegisterCodeController::class, 'index'])->name('api.server.register_code.index');
+        Route::get('/get', [RegisterCodeController::class, 'get'])->name('api.server.register_code.get');
+        Route::post('/store', [RegisterCodeController::class, 'store'])->name('api.server.register_code.store');
+        Route::post('/delete', [RegisterCodeController::class, 'delete'])->name('api.server.register_code.delete');
     });
 });

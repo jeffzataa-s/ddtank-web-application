@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Parameter;
 use App\Models\RegisterCode;
+use App\Models\Role;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -65,6 +66,7 @@ class AuthController extends Controller
             $input = $request->all();
             $input['password'] = bcrypt($input['password']);
             $user = User::create($input);
+            $user->addRole(Role::ROLE_CUSTOMER);
             $success = [];
             $success['token'] = $user->createToken('ddt_auth')->plainTextToken;
             $success['name'] = $user->name;
